@@ -1,8 +1,6 @@
 'use strict';
 const Service = require('egg').Service;
 const UUID = require('uuid');
-const fs = require('fs');
-const path = require('path');
 
 let User = [];
 
@@ -56,23 +54,6 @@ class UserService extends Service {
       if (el.id === id) {
         el.email = email || el.email;
         el.phoneNumber = phoneNumber || el.phoneNumber;
-      }
-      return el.id === id;
-    });
-
-    return user[0] || {};
-  }
-
-  async uploadImg(origin, id, stream) {
-    const writerStream = fs.createWriteStream(path.join(this.config.baseDir, `app/public/${stream.filename}`));
-
-    stream.pipe(writerStream);
-
-    let imgUrl = `${origin}/public/${stream.filename}`;
-
-    let user = User.filter((el, index) => {
-      if (el.id === id) {
-        el['imageUrl'] = imgUrl;
       }
       return el.id === id;
     });

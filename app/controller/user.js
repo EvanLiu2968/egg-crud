@@ -3,7 +3,7 @@
 const Controller = require('egg').Controller;
 
 /**
- * @controller user 用户接口
+ * @controller UserController 用户
  */
 class UserController extends Controller {
 
@@ -89,22 +89,5 @@ class UserController extends Controller {
     ctx.body = await service.user.updateUser(id, req.email, req.phoneNumber);
   }
 
-  /**
-   * @summary 上传图片
-   * @description 上传图片
-   * @router post /v1/upload
-   * @request formData string id 用户ID
-   * @request formData file *file
-   * @response 200 uploadResponse 更新成功
-   */
-  async upload() {
-    const { ctx, service } = this;
-
-    const stream = await ctx.getFileStream();
-    const id = stream.fields.id;
-    const origin = ctx.origin;
-
-    ctx.body = await service.user.uploadImg(origin, id, stream);
-  }
 }
 module.exports = UserController;

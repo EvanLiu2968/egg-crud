@@ -5,6 +5,8 @@
   "private": true,
   "dependencies": {
     "egg": "^2.2.1",
+    "egg-mysql": "^3.0.0",
+    "egg-redis": "^2.4.0",
     "egg-scripts": "^2.5.0",
     "egg-swagger-doc": "^2.2.5",
     "egg-validate": "^1.0.0",
@@ -18,8 +20,8 @@
     "egg-mock": "^3.14.0",
     "eslint": "^4.11.0",
     "eslint-config-egg": "^6.0.0",
-    "webstorm-disable-index": "^1.2.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
     "node": "^8.1.3"

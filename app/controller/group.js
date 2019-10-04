@@ -3,48 +3,48 @@
 const Controller = require('egg').Controller;
 
 /**
- * @controller group 组别接口
+ * @controller GroupController 用户组
  */
 class GroupController extends Controller {
 
   /**
-   * @summary 新增小组
-   * @description 新增小组，设置小组负责人
-   * @router post /v1/groups
+   * @summary 新增用户组
+   * @description 新增用户组
+   * @router post /v1/createGroup
    * @request body createGroupRequest *body
    * @response 200 createGroupResponse 创建成功
    */
-  async create() {
+  async createGroup() {
     const { ctx, service } = this;
     // 校验参数
     ctx.validate(ctx.rule.createGroupRequest);
 
-    let req = ctx.request.body;
+    let group = ctx.request.body;
 
-    ctx.body = await service.group.createGroup(req.groupName);
+    ctx.body = await service.group.createGroup(group);
 
   }
 
   /**
-   * @ignore
-   */
-  async nothing() {
-    const { ctx } = this;
-    ctx.body = 'nothing';
-  }
-
-  /**
-   * @summary 获取用户
-   * @description 根据组别获取负责人信息
-   * @router get /v1/gourps/{id}/leader
-   * @request path integer *id eg:1 小组ＩＤ
+   * @summary 获取用户组列表
+   * @description 获取用户组列表
+   * @router get /v1/groups
+   * @request query integer pageNo 页码 默认 1
+   * @request query integer pageSize 单页数量 默认 10
    * @response 200 getLeaderByGroupResponse 用户信息
    */
-  async get() {
+  async getGroups() {
     const { ctx, service } = this;
-    let id = Number(ctx.params.id);
 
-    ctx.body = await service.group.getGroupLeader(id);
+    let groupName = String(ctx.query.groupName || '');
+    let pageNo = Number(ctx.query.pageNo || 1);
+    let pageSize = Number(ctx.query.pageSize || 10);
+
+    ctx.body = await service.group.getGroups({
+      groupName,
+      pageNo,
+      pageSize,
+    });
   }
 
 }

@@ -1,30 +1,42 @@
 'use strict';
 const Service = require('egg').Service;
 
-let Group = [];
-let GroupId = 1;
-
 class UserService extends Service {
 
-  async createGroup(groupName) {
-
-    let group = {
-      id: GroupId++,
-      groupName,
+  async createGroup(group) {
+    const db = this.app.mysql;
+    const now = new Date().getTime();
+    console.log(now);
+    let data = {
+      group_name: group.groupName,
+      create_id: 0,
+      // create_time: now,
+      update_id: 0,
+      note: group.note,
     };
 
-    Group.push(group);
+    const result = await db.insert('user_group', data);
+    const insertSuccess = result.affectedRows === 1;
+    if (insertSuccess) {
+      return Object.assign({
+        id: insertSuccess.insertId,
+      }, data);
+    }
 
-    return group;
   }
 
-  async getGroupLeader(id) {
-    let group = Group.filter((el, index) => el.id === id);
-    let leader = await this.service.user.getLeader(id);
+  async getGroups() {
+    const db = this.app.mysql;
+
+    const results = await db.select('user_group', {
+      where: { status: 0 },
+      orders: [['id', 'desc']],
+      limit: 10,
+      offset: 0,
+    });
 
     return {
-      groupName: group[0].id,
-      leader,
+      results,
     };
   }
 }

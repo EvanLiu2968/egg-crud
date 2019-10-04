@@ -3,6 +3,7 @@
 module.exports = {
   createGroupRequest: {
     groupName: { type: 'string', required: true, min: 1, description: '组名' },
+    note: { type: 'string', required: true, min: 1, description: '备注' },
   },
 
   updateUserRequest: {

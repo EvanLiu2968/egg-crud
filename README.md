@@ -6,38 +6,36 @@ A full example egg crud app, only with egg server.
 需要继承webpack、react、vue这些前端服务的话，可参考[https://github.com/EvanLiu2968/evanliu2968](https://github.com/EvanLiu2968/evanliu2968)
 
 ## 主要集成服务
-- egg-cluster
-- egg-mysql
+- egg-script(egg-cluster) 代替pm2功能
+- [egg-mysql](https://eggjs.org/zh-cn/tutorials/mysql.html)
 - egg-redis
-- [egg-swagger-doc-feat](https://www.npmjs.com/package/egg-swagger-doc) 接口文档服务
+- [egg-swagger-doc](https://www.npmjs.com/package/egg-swagger-doc) 接口文档服务
 
 ### Build Setup
 
 ```bash
 # install dependencies
-$ npm install
+$ yarn
 
 # serve at localhost:7001
-$ npm run dev
+$ yarn run dev
 
 ```
 
 ### Deploy
 
 ```bash
-$ npm start
-$ npm stop
+$ yarn run start
+$ yarn run stop
 ```
 
 ### npm scripts
 
-- Use `npm run lint` to check code style.
-- Use `npm test` to run unit test.
-- Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
+- Use `yarn run lint` to check code style.
+- Use `yarn run test` to run unit test.
+- Use `yarn run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
 
 ### URL 
 
-- swaggerUI: http://localhost:7001/swagger-ui.html
-
-- JSON
-http://localhost:7001/swagger-doc
+- swaggerUI http://localhost:7001/swagger-ui.html
+- JSON http://localhost:7001/swagger-doc
