@@ -30,16 +30,18 @@ class UserController extends Controller {
    * @description 分页获取用户信息
    * @router get /v1/users
    * @request query integer pageNo 页码 默认 1
-   * @request query integer pageSize 单页数量 默认 20
+   * @request query integer pageSize 单页数量 默认 10
    * @response 200 queryUserResponse successed
    */
   async query() {
     const { ctx, service } = this;
-
+    const query = {};
     let pageNo = Number(ctx.query.pageNo || 1);
-    let pageSize = Number(ctx.query.pageSize || 20);
+    let pageSize = Number(ctx.query.pageSize || 10);
+    query.offset = (pageNo - 1) * pageSize;
+    query.limit = pageSize;
 
-    ctx.body = await service.user.queryUser(pageNo, pageSize);
+    ctx.body = await service.user.queryUser(query);
   }
 
   /**
@@ -84,9 +86,8 @@ class UserController extends Controller {
     let id = ctx.params.id;
     // 校验参数
     ctx.validate(ctx.rule.updateUserRequest);
-    let req = ctx.request.body;
 
-    ctx.body = await service.user.updateUser(id, req.email, req.phoneNumber);
+    ctx.body = await service.user.updateUser(id, ctx.request.body);
   }
 
 }

@@ -5,7 +5,7 @@ const path = require('path');
 
 class CommonService extends Service {
 
-  async uploadImg(origin, id, stream) {
+  async uploadFile(origin, id, stream) {
     const writerStream = fs.createWriteStream(path.join(this.config.baseDir, `app/public/${stream.filename}`));
 
     stream.pipe(writerStream);

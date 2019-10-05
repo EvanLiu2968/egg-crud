@@ -4,39 +4,23 @@ const Service = require('egg').Service;
 class UserService extends Service {
 
   async createGroup(group) {
-    const db = this.app.mysql;
-    const now = new Date().getTime();
-    console.log(now);
-    let data = {
-      group_name: group.groupName,
-      create_id: 0,
-      // create_time: now,
-      update_id: 0,
-      note: group.note,
-    };
-
-    const result = await db.insert('user_group', data);
-    const insertSuccess = result.affectedRows === 1;
-    if (insertSuccess) {
-      return Object.assign({
-        id: insertSuccess.insertId,
-      }, data);
-    }
-
+    const Group = new this.ctx.model.UserGroup();
+    Group.group_name = group.groupName;
+    Group.note = group.note;
+    return Group.save();
   }
 
-  async getGroups() {
-    const db = this.app.mysql;
-
-    const results = await db.select('user_group', {
-      where: { status: 0 },
-      orders: [['id', 'desc']],
-      limit: 10,
-      offset: 0,
+  async queryGroup({ offset = 0, limit = 10 }) {
+    const { count, rows } = await this.ctx.model.UserGroup.findAndCountAll({
+      offset,
+      limit,
+      order: [[ 'create_time', 'desc' ], [ 'id', 'desc' ]],
     });
-
     return {
-      results,
+      page: offset / limit + 1,
+      size: limit,
+      records: rows,
+      total: count,
     };
   }
 }

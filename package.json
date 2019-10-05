@@ -5,11 +5,12 @@
   "private": true,
   "dependencies": {
     "egg": "^2.2.1",
-    "egg-mysql": "^3.0.0",
     "egg-redis": "^2.4.0",
     "egg-scripts": "^2.5.0",
+    "egg-sequelize": "^5.2.0",
     "egg-swagger-doc": "^2.2.5",
     "egg-validate": "^1.0.0",
+    "mysql2": "^1.7.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -21,6 +22,7 @@
     "eslint": "^4.11.0",
     "eslint-config-egg": "^6.0.0",
     "mocha": "^5.2.0",
+    "sequelize-cli": "^5.5.1",
     "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
@@ -33,6 +35,9 @@
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:undo": "sequelize db:migrate:undo",
+    "db:migrate:undo:all": "sequelize db:migrate:undo:all",
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",

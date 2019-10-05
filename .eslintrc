@@ -7,6 +7,7 @@
     "dot-notation": "off",
     "no-unused-vars": "off",
     "space-before-function-paren":"off",
+    "linebreak-style": [0, "error", "windows"],
     "object-shorthand":"off"
   }
 }

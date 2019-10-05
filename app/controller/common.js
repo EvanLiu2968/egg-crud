@@ -43,7 +43,7 @@ class CommonController extends Controller {
     const id = stream.fields.id;
     const origin = ctx.origin;
 
-    ctx.body = await service.user.uploadImg(origin, id, stream);
+    ctx.body = await service.common.uploadFile(origin, id, stream);
   }
 }
 module.exports = CommonController;

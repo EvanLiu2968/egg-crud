@@ -8,62 +8,40 @@ class UserService extends Service {
 
   async createUser(user) {
 
-    let id = UUID.v1();
-    user['id'] = id;
-
-    User.push(user);
-
-    return {
-      result: true,
-    };
+    return this.ctx.model.User.create(Object.assign({ uuid: UUID.v1() }, user));
   }
 
-  async queryUser(pageNo, pageSize) {
-
-    let totalCount = User.length;
-
-    let users = User.filter((el, index) => index > (pageNo - 1) * pageSize - 1 && index < pageNo * pageSize - 1);
-
-    return {
-      users,
-      pageNo,
-      pageSize,
-      totalCount,
-      hasNextPage: pageNo * pageSize < totalCount,
-    };
+  async queryUser({ offset = 0, limit = 10 }) {
+    return this.ctx.model.User.findAndCountAll({
+      offset,
+      limit,
+      order: [[ 'create_time', 'desc' ], [ 'id', 'desc' ]],
+    });
   }
 
   async getUser(id) {
-    let user = User.filter((el, index) => el.id === id);
-    return user[0] || {};
+    const user = await this.ctx.model.User.findByPk(id);
+    if (!user) {
+      this.ctx.throw(404, 'user not found');
+    }
+    return user;
   }
 
 
   async delUser(id) {
-    let user = User.filter((el, index) => el.id !== id);
-
-    User = user;
-
-    return {
-      result: true,
-    };
+    const user = await this.ctx.model.User.findByPk(id);
+    if (!user) {
+      this.ctx.throw(404, 'user not found');
+    }
+    return user.destroy();
   }
 
-  async updateUser(id, email, phoneNumber) {
-    let user = User.filter((el, index) => {
-      if (el.id === id) {
-        el.email = email || el.email;
-        el.phoneNumber = phoneNumber || el.phoneNumber;
-      }
-      return el.id === id;
-    });
-
-    return user[0] || {};
-  }
-
-  async getLeader(groupId) {
-    let user = User.filter((el, index) => el.group === groupId && el.isLeader === true);
-    return user[0] || {};
+  async updateUser(id, updates) {
+    const user = await this.ctx.model.User.findByPk(id);
+    if (!user) {
+      this.ctx.throw(404, 'user not found');
+    }
+    return user.update(updates);
   }
 }
 

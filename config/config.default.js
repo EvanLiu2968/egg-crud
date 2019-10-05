@@ -34,25 +34,42 @@ module.exports = appInfo => {
     },
   };
 
-  config.mysql = {
-    // database configuration
-    client: {
-      // host
-      host: 'localhost',
-      // port
-      port: '3306',
-      // username
-      user: 'root',
-      // password
-      password: 'root',
-      // database
-      database: 'egg-crud',
+  config.sequelize = {
+    dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+    database: 'egg-crud',
+    host: '127.0.0.1',
+    port: 3306,
+    username: 'root',
+    password: 'root',
+    define: {
+      timestamps: false, // 自动维护时间戳
+      underscored: true, // 是否不转换为驼峰式，仅用于create_at update_at字段
+      freezeTableName: true, // 禁止修改表名，默认情况下sequelize将自动将所有传递的模型名称（define的第一个参数）转换为复数
     },
-    // load into app, default is open
-    app: true,
-    // load into agent, default is close
-    agent: false,
+    timezone: '+08:00', // 保存为本地时区
+    dialectOptions: {
+      dateStrings: true,
+      typeCast(field, next) {
+        // for reading from database
+        if (field.type === 'DATETIME') {
+          return field.string();
+        }
+        return next();
+      },
+    },
   };
+
+  // config.mysql = {
+  //   client: {
+  //     host: '127.0.0.1',
+  //     port: '3306',
+  //     user: 'root',
+  //     password: 'root',
+  //     database: 'egg-crud',
+  //   },
+  //   app: true,
+  //   agent: false,
+  // };
 
   // 配置上传文件白名单
   config.multipart = {

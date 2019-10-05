@@ -5,4 +5,8 @@ module.exports = {
     id: { type: 'string', description: 'id 唯一键' },
     groupName: { type: 'string', description: '组名' },
   },
+  getGroupResponse: {
+    id: { type: 'string', description: 'id 唯一键' },
+    groupName: { type: 'string', description: '组名' },
+  },
 };

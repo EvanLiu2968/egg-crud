@@ -9,10 +9,15 @@ exports.redis = {
   package: 'egg-redis',
 };
 
-exports.mysql = {
+exports.sequelize = {
   enable: true,
-  package: 'egg-mysql',
+  package: 'egg-sequelize',
 };
+
+// exports.mysql = {
+//   enable: true,
+//   package: 'egg-mysql',
+// };
 
 exports.validate = {
   enable: true,

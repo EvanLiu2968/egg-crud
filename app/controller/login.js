@@ -8,8 +8,7 @@ const Controller = require('egg').Controller;
 class LoginController extends Controller {
 
   /**
-   * @summary 登录
-   * @description 用户登录
+   * @summary 用户登录
    * @router post /v1/login
    * @request body createUserRequest *body
    * @response 200 baseResponse 创建成功
@@ -26,8 +25,7 @@ class LoginController extends Controller {
   }
 
   /**
-   * @summary 退出登录
-   * @description 用户退出登录
+   * @summary 用户退出登录
    * @router get /v1/logout
    * @response 200 baseResponse 操作成功
    */

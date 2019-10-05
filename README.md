@@ -3,13 +3,36 @@ A full example egg crud app, only with egg server.
 
 此项目是为了提供一个开箱即用的egg应用模版，按正常的前后端分离逻辑，后端服务仅需提供接口服务、接口文档及部署流程
 
-需要继承webpack、react、vue这些前端服务的话，可参考[https://github.com/EvanLiu2968/evanliu2968](https://github.com/EvanLiu2968/evanliu2968)
+需要加入webpack、react、vue这些前端服务的话，可参考[https://github.com/EvanLiu2968/evanliu2968](https://github.com/EvanLiu2968/evanliu2968)
 
 ## 主要集成服务
-- egg-script(egg-cluster) 代替pm2功能
-- [egg-mysql](https://eggjs.org/zh-cn/tutorials/mysql.html)
+- egg-script(egg-cluster)
+- [egg-sequelize](https://eggjs.org/zh-cn/tutorials/sequelize.html)
 - egg-redis
 - [egg-swagger-doc](https://www.npmjs.com/package/egg-swagger-doc) 接口文档服务
+
+## sequelize
+Node的sequelize相当于Java的mybatis, golang的gorm。在一些较为复杂的应用中，我们可能会需要一个 ORM 框架来帮助我们管理数据层的代码
+
+### sequelize-cli
+- 初始化 Migrations 配置文件和目录
+```bash
+npx sequelize init:config
+npx sequelize init:migrations
+```
+- 初始化 Migration 文件
+```bash
+npx sequelize migration:generate --name=init-user
+```
+- 初始化数据库
+```bash
+# 升级数据库
+npx sequelize db:migrate
+# 如果有问题需要回滚，可以通过 `db:migrate:undo` 回退一个变更
+# npx sequelize db:migrate:undo
+# 可以通过 `db:migrate:undo:all` 回退到初始状态
+# npx sequelize db:migrate:undo:all
+```
 
 ### Build Setup
 
