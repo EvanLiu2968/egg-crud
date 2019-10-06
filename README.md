@@ -8,7 +8,7 @@ A full example egg crud app, only with egg server.
 ## 主要集成服务
 - egg-script(egg-cluster)
 - [egg-sequelize](https://eggjs.org/zh-cn/tutorials/sequelize.html)
-- egg-redis
+- egg-redis(集成登录、授权服务)
 - [egg-swagger-doc](https://www.npmjs.com/package/egg-swagger-doc) 接口文档服务
 
 ## sequelize

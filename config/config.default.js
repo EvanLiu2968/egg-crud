@@ -13,6 +13,8 @@ module.exports = appInfo => {
   // should change to your own
   config.keys = appInfo.name + '_1490750627161_5967';
 
+  config.middleware = [ 'errorHandler', 'authHandler' ];
+
   config.uploadDir = path.join(__dirname, '../uploadFile');
 
   config.swaggerdoc = {
@@ -23,6 +25,24 @@ module.exports = appInfo => {
       version: '1.0.0',
     },
     schemes: ['http'],
+    parameters: [
+      {
+        description: '用户登录凭证',
+        name: 'accessToken',
+        in: 'header',
+      },
+    ],
+    // https://swagger.io/specification/#securitySchemeObject
+    securityDefinitions: {
+      apiKey: {
+        type: 'apiKey',
+        description: '用户登录凭证',
+        name: 'accessToken',
+        in: 'header',
+      },
+    },
+    enableSecurity: true,
+    // enableValidate: true,
     enable: true,
     routerMap: true,
   };

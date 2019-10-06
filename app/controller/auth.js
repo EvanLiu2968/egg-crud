@@ -18,34 +18,43 @@ class LoginController extends Controller {
     // 校验参数
     ctx.validate(ctx.rule.loginRequest);
 
-    let user = ctx.request.body;
+    const { account, password } = ctx.request.body;
+    const user = await service.user.getUser(1);
+    const uuid = user.uuid;
+    await ctx.app.redis.set(uuid, JSON.stringify(user));
 
-    ctx.setSuccess(null);
+    ctx.setSuccess({
+      token: uuid,
+    });
 
   }
 
   /**
    * @summary 用户退出登录
    * @router get /v1/auth/logout
+   * @request header string accessToken
    * @response 200 baseResponse 操作成功
    */
   async logout() {
     const { ctx, service } = this;
+
+    const token = ctx.request.get('accessToken') || ctx.cookies.get('accessToken');
+    await ctx.app.redis.remove(token);
+    ctx.session.user = null;
 
     ctx.setSuccess(null);
   }
 
   /**
    * @summary 获取登录用户信息
-   * @description 获取登录用户信息
    * @router get /v1/auth/getUser
+   * @request header string accessToken
    * @response 200 getUserResponse 用户信息
    */
   async getUser() {
     const { ctx, service } = this;
 
-    const data = await service.user.getUser(1);
-    ctx.setSuccess(data);
+    ctx.setSuccess(ctx.session.user);
   }
 
 }

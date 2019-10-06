@@ -69,10 +69,6 @@ module.exports = {
       ctx.logger.error(e.stack);
     }
   },
-  setDeny() {
-    const ctx = this;
-    ctx.setResponse(22);
-  },
   formatPager(query = {}) {
     let page = Number(query.page || 1);
     let size = Number(query.size || 10);

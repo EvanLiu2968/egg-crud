@@ -11,6 +11,7 @@ class UserController extends Controller {
    * @summary 创建用户
    * @description 创建用户，记录用户账户/密码/类型
    * @router post /v1/user/createUser
+   * @request header string accessToken
    * @request body createUserRequest *body
    * @response 200 baseResponse 创建成功
    */
@@ -28,6 +29,7 @@ class UserController extends Controller {
   /**
    * @summary 获取用户列表
    * @router get /v1/user/getUsers
+   * @request header string accessToken
    * @request query integer page 页码 默认 1
    * @request query integer size 单页数量 默认 10
    * @response 200 queryUserResponse successed
@@ -44,6 +46,7 @@ class UserController extends Controller {
   /**
    * @summary 根据id获取用户
    * @router get /v1/user/getUserById/{id}
+   * @request header string accessToken
    * @request path string *id
    * @response 200 getUserResponse 用户信息
    */
@@ -59,6 +62,7 @@ class UserController extends Controller {
    * @summary 删除用户
    * @description 删除用户信息
    * @router delete /v1/user/deleteUser/{id}
+   * @request header string accessToken
    * @request path string *id
    * @response 200 baseResponse 删除成功
    */
@@ -75,6 +79,7 @@ class UserController extends Controller {
    * @summary 更新用户
    * @description 创建用户，记录用户账户/密码/类型
    * @router put /v1/user/updateUser/{id}
+   * @request header string accessToken
    * @request path string *id
    * @request body updateUserRequest *body
    * @response 200 user 更新成功

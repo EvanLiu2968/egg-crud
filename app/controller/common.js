@@ -19,7 +19,7 @@ class CommonController extends Controller {
    * @summary 获取幸运礼包
    * @description 随机抽取一个神秘礼包，最高500万代金券哦
    * @Deprecated
-   * @router get /v1/common/getMoney
+   * @router get /v1/common/getGift
    * @response 200 giftResponse 成功获得一个幸运礼包
    */
   async getGift() {

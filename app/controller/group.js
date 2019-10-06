@@ -10,6 +10,7 @@ class GroupController extends Controller {
   /**
    * @summary 新增用户组
    * @router post /v1/group/createGroup
+   * @request header string accessToken
    * @request body createGroupRequest *body
    * @response 200 createGroupResponse 创建成功
    */
@@ -27,6 +28,7 @@ class GroupController extends Controller {
   /**
    * @summary 获取用户组列表
    * @router get /v1/group/getGroups
+   * @request header string accessToken
    * @request query integer page 页码 默认 1
    * @request query integer size 单页数量 默认 10
    * @response 200 getGroupResponse 用户组信息
