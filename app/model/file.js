@@ -13,5 +13,7 @@ module.exports = app => {
     create_time: DATE,
   });
 
+  File.sync({ alter: true });
+
   return File;
 };

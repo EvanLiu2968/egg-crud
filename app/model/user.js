@@ -23,5 +23,7 @@ module.exports = app => {
     app.model.User.hasMany(app.model.UserGroup, { as: 'group' });
   };
 
+  User.sync({ alter: true });
+
   return User;
 };

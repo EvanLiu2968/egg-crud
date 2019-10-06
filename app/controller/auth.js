@@ -3,51 +3,49 @@
 const Controller = require('egg').Controller;
 
 /**
- * @controller LoginController 用户权鉴
+ * @controller AuthController 用户权鉴
  */
 class LoginController extends Controller {
 
   /**
    * @summary 用户登录
-   * @router post /v1/login
-   * @request body createUserRequest *body
+   * @router post /v1/auth/login
+   * @request body loginRequest *body
    * @response 200 baseResponse 创建成功
    */
   async login() {
     const { ctx, service } = this;
     // 校验参数
-    ctx.validate(ctx.rule.createUserRequest);
+    ctx.validate(ctx.rule.loginRequest);
 
     let user = ctx.request.body;
 
-    ctx.body = await service.user.createUser(user);
+    ctx.setSuccess(null);
 
   }
 
   /**
    * @summary 用户退出登录
-   * @router get /v1/logout
+   * @router get /v1/auth/logout
    * @response 200 baseResponse 操作成功
    */
   async logout() {
     const { ctx, service } = this;
 
-    let pageNo = Number(ctx.query.pageNo || 1);
-    let pageSize = Number(ctx.query.pageSize || 20);
-
-    ctx.body = await service.user.queryUser(pageNo, pageSize);
+    ctx.setSuccess(null);
   }
 
   /**
    * @summary 获取登录用户信息
    * @description 获取登录用户信息
-   * @router get /v1/getUser
+   * @router get /v1/auth/getUser
    * @response 200 getUserResponse 用户信息
    */
   async getUser() {
     const { ctx, service } = this;
 
-    ctx.body = await service.user.getUser(0);
+    const data = await service.user.getUser(1);
+    ctx.setSuccess(data);
   }
 
 }

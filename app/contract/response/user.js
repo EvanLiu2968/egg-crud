@@ -3,8 +3,8 @@
 module.exports = {
   queryUserResponse: {
     users: { type: 'array', itemType: 'user' },
-    pageNo: { type: 'integer' },
-    pageSize: { type: 'integer' },
+    page: { type: 'integer' },
+    size: { type: 'integer' },
     totalCount: { type: 'integer' },
   },
   getUserResponse: {

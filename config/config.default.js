@@ -1,4 +1,5 @@
 'use strict';
+const path = require('path');
 
 module.exports = appInfo => {
   const config = {};
@@ -11,6 +12,8 @@ module.exports = appInfo => {
 
   // should change to your own
   config.keys = appInfo.name + '_1490750627161_5967';
+
+  config.uploadDir = path.join(__dirname, '../uploadFile');
 
   config.swaggerdoc = {
     dirScanner: './app/controller',

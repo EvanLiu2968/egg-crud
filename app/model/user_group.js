@@ -25,5 +25,7 @@ module.exports = app => {
   //   });
   // };
 
+  UserGroup.sync({ alter: true });
+
   return UserGroup;
 };
