@@ -10,8 +10,7 @@
     "egg-sequelize": "^5.2.0",
     "egg-swagger-doc": "^2.2.5",
     "egg-validate": "^1.0.0",
-    "mysql2": "^1.7.0",
-    "uuid": "^3.3.2"
+    "mysql2": "^1.7.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",

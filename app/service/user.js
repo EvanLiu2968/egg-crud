@@ -1,14 +1,33 @@
 'use strict';
 const Service = require('egg').Service;
-const UUID = require('uuid');
-
-let User = [];
 
 class UserService extends Service {
 
   async createUser(user) {
-
-    return this.ctx.model.User.create(Object.assign({ uuid: UUID.v1() }, user));
+    // 手机号码和邮箱必填一个，且两者都不能有重复
+    const { phone, email } = user;
+    if (phone) {
+      const data = await this.ctx.model.User.findOne({
+        where: {
+          phone,
+        },
+      });
+      if (data) {
+        this.ctx.throw(500, '不能提交重复手机号码');
+      }
+    }
+    if (email) {
+      const data = await this.ctx.model.User.findOne({
+        where: {
+          email,
+        },
+      });
+      if (data) {
+        this.ctx.throw(500, '不能提交重复邮箱');
+      }
+    }
+    user.group_id = user.groupId;
+    return await this.ctx.model.User.create(user);
   }
 
   async queryUser({ offset = 0, limit = 10 }) {

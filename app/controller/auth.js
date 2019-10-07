@@ -18,14 +18,9 @@ class LoginController extends Controller {
     // 校验参数
     ctx.validate(ctx.rule.loginRequest);
 
-    const { account, password } = ctx.request.body;
-    const user = await service.user.getUser(1);
-    const uuid = user.uuid;
-    await ctx.app.redis.set(uuid, JSON.stringify(user));
+    const data = await service.auth.login(ctx.request.body);
 
-    ctx.setSuccess({
-      token: uuid,
-    });
+    ctx.setSuccess(data);
 
   }
 
@@ -38,9 +33,7 @@ class LoginController extends Controller {
   async logout() {
     const { ctx, service } = this;
 
-    const token = ctx.request.get('accessToken') || ctx.cookies.get('accessToken');
-    await ctx.app.redis.remove(token);
-    ctx.session.user = null;
+    await service.auth.logout();
 
     ctx.setSuccess(null);
   }
@@ -54,7 +47,9 @@ class LoginController extends Controller {
   async getUser() {
     const { ctx, service } = this;
 
-    ctx.setSuccess(ctx.session.user);
+    const data = await service.auth.getUser();
+
+    ctx.setSuccess(data);
   }
 
 }

@@ -9,7 +9,7 @@ module.exports = (option, app) => {
       app.emit('error', err, this);
       const status = err.status || 500;
       // 所有错误都通过code来定义
-      ctx.setResponse(status, null, err.errors);
+      ctx.setResponse(status, null, err.message || err.errors);
     }
   };
 };

@@ -45,6 +45,16 @@ npx sequelize db:migrate
 ModelInstance.sync({ alter: true });
 ```
 
+- 初始化数据
+```bash
+# 创建seed
+npx sequelize seed:create --name init-user
+# 执行所有seed
+npx sequelize db:seed:all
+# 执行指定seed
+npx sequelize db:seed --seed ${timestamp}-init-user.js
+```
+
 ### Build Setup
 
 ```bash

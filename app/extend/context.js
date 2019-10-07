@@ -33,13 +33,14 @@ const codeMsg = {
   62: '验证码错误',
   63: '两次输入密码不一致',
   64: '姓名与身份证号码不匹配',
+  500: '系统错误',
 };
 // this === ctx
 module.exports = {
   setResponse(code, data, message) {
     const ctx = this;
     code = code || 0;
-    message = message || codeMsg[code];
+    message = message || codeMsg[code] || '系统错误';
     data = data || null;
     ctx.status = 200;
     ctx.body = {
