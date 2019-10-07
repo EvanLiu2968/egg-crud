@@ -1,5 +1,5 @@
 # egg-crud
-A full example egg crud app, only with egg server. 
+A full example egg crud app framework, include mysql, redis and swagger-doc. 
 
 此项目是为了提供一个开箱即用的egg应用模版(依赖mysql, redis)，按正常的前后端分离逻辑，后端服务仅需提供接口服务、接口文档及部署流程
 
