@@ -20,10 +20,8 @@ function requireAuthApi(path) {
 module.exports = (option, app) => {
   return async function(ctx, next) {
     const token = ctx.request.get('accessToken') || ctx.cookies.get('accessToken');
-    console.log(token);
     if (token) {
       const user = await app.redis.get(token);
-      console.log(user);
       if (user) {
         ctx.session.user = JSON.parse(user);
       }
