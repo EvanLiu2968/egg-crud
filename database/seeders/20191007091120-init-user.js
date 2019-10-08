@@ -10,6 +10,7 @@ module.exports = {
       name: '管理员',
       phone: 'admin',
       email: 'evanliu2968@gmail.com',
+      password: '123456',
       group_id: 1
     }], {
       // forces: true
