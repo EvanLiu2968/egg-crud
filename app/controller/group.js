@@ -3,7 +3,7 @@
 const Controller = require('egg').Controller;
 
 /**
- * @controller GroupController 用户组
+ * @controller 用户组管理 GroupController
  */
 class GroupController extends Controller {
 

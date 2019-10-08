@@ -3,7 +3,7 @@
 const Controller = require('egg').Controller;
 
 /**
- * @controller CommonController 通用业务
+ * @controller 通用业务 CommonController
  */
 class CommonController extends Controller {
 
