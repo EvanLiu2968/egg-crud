@@ -27,6 +27,8 @@ class UserService extends Service {
       }
     }
     user.group_id = user.groupId;
+    user.create_id = this.ctx.session.user.id;
+    user.update_id = this.ctx.session.user.id;
     return await this.ctx.model.User.create(user);
   }
 
@@ -41,7 +43,7 @@ class UserService extends Service {
   async getUser(id) {
     const user = await this.ctx.model.User.findByPk(id);
     if (!user) {
-      this.ctx.throw(404, 'user not found');
+      this.ctx.throw(404, '没有找到该用户');
     }
     return user;
   }
@@ -50,7 +52,7 @@ class UserService extends Service {
   async delUser(id) {
     const user = await this.ctx.model.User.findByPk(id);
     if (!user) {
-      this.ctx.throw(404, 'user not found');
+      this.ctx.throw(404, '没有找到该用户');
     }
     return user.destroy();
   }
@@ -58,8 +60,9 @@ class UserService extends Service {
   async updateUser(id, updates) {
     const user = await this.ctx.model.User.findByPk(id);
     if (!user) {
-      this.ctx.throw(404, 'user not found');
+      this.ctx.throw(404, '没有找到该用户');
     }
+    updates.update_id = this.ctx.session.user.id;
     return user.update(updates);
   }
 }

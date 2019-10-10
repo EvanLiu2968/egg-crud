@@ -58,7 +58,7 @@ module.exports = appInfo => {
   };
 
   config.sequelize = {
-    dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+    dialect: 'mysql', // 可选值有：mysql、postgres、sqlite、mariadb、mssql
     database: 'egg-crud',
     host: '127.0.0.1',
     port: 3306,
@@ -69,14 +69,16 @@ module.exports = appInfo => {
       underscored: true, // 是否不转换为驼峰式，仅用于create_at update_at字段
       freezeTableName: true, // 禁止修改表名，默认情况下sequelize将自动将所有传递的模型名称（define的第一个参数）转换为复数
     },
+    omitNull: true, // null值是否返回
+    replication: false, // 是否使用读写分离
     timezone: '+08:00', // 保存为本地时区
     dialectOptions: {
       dateStrings: true,
       typeCast(field, next) {
         // for reading from database
-        if (field.type === 'DATETIME') {
-          return field.string();
-        }
+        // if (field.type === 'DATETIME') {
+        //   return field.string();
+        // }
         return next();
       },
     },

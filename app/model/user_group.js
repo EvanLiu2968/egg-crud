@@ -13,6 +13,10 @@ module.exports = app => {
     create_time: DATE,
     update_id: INTEGER,
     update_time: DATE,
+  }, {
+    timestamps: true,
+    createdAt: 'create_time',
+    updatedAt: 'update_time',
   });
 
   // UserGroup.associate = function() {

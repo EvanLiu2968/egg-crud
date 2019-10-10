@@ -11,6 +11,10 @@ module.exports = app => {
     file_size: INTEGER,
     create_id: INTEGER,
     create_time: DATE,
+  }, {
+    timestamps: true,
+    createdAt: 'create_time',
+    updatedAt: false,
   });
 
   File.sync({ alter: true });

@@ -4,9 +4,13 @@ const Service = require('egg').Service;
 class UserService extends Service {
 
   async createGroup(group) {
+    const user = this.ctx.session.user;
+
     const Group = new this.ctx.model.UserGroup();
     Group.group_name = group.groupName;
     Group.note = group.note;
+    Group.create_id = user.id;
+    Group.update_id = user.id;
     return Group.save();
   }
 
