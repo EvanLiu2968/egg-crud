@@ -78,3 +78,45 @@ $ yarn run stop
 - Use `yarn run lint` to check code style.
 - Use `yarn run test` to run unit test.
 - Use `yarn run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
+
+##### Mac start
+```bash
+brew install redis mongodb
+brew services start redis
+brew services start mongodb
+```
+
+##### Windows start
+可使用phpstudy等类似集成环境工具快速启动本地服务
+
+##### Linux(CentOS7) start
+```bash
+# redis install
+sudo apt-get update
+sudo apt-get install redis-server
+# redis start
+redis-server
+# test success
+redis-cli
+
+# download mongodb package
+
+wget http://mirrors.aliyun.com/mongodb/yum/redhat/6Server/mongodb-org/3.4/x86_64/RPMS/mongodb-org-mongos-3.4.0-1.el6.x86_64.rpm
+
+# create yum resposity
+
+rpm -ivh mongodb-org-mongos-3.4.0-1.el6.x86_64.rpm
+
+# install
+
+yum install mongodb
+
+# start service
+
+service mongod start
+
+# conf
+
+cd /etc/mongo.conf
+
+```
