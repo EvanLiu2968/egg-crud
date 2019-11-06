@@ -91,13 +91,33 @@ brew services start mongodb
 
 ##### Linux(CentOS7) start
 ```bash
-# redis install
-sudo apt-get update
-sudo apt-get install redis-server
-# redis start
-redis-server
-# test success
-redis-cli
+# redis install [yum install redis](https://www.cnblogs.com/rslai/p/8249812.html)
+yum install redis
+
+# control
+systemctl start redis.service
+systemctl stop redis.service
+
+# install mysql
+# https://stackoverflow.com/questions/9083408/fatal-error-cant-open-and-lock-privilege-tables-table-mysql-host-doesnt-ex
+wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+rpm -ivh mysql-community-release-el7-5.noarch.rpm
+yum install mysql-server
+
+# edit config
+vim /etc/my.cnf
+datadir=/data/mysql
+# mysql control
+systemctl start mysqld
+
+# login
+# cat /var/log/mysqld.log|grep 'A temporary password'
+mysql -u root -p
+use mysql
+update mysql.user set authentication_string = password("123456") where user="root";
+GRANT ALL ON *.* to root@'%' IDENTIFIED BY 'root'; # to allow remote connect
+flush privileges;
+quit;
 
 # download mongodb package
 

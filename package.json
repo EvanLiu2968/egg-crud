@@ -21,14 +21,13 @@
     "eslint": "^4.11.0",
     "eslint-config-egg": "^6.0.0",
     "mocha": "^5.2.0",
-    "sequelize-cli": "^5.5.1",
-    "webstorm-disable-index": "^1.2.0"
+    "sequelize-cli": "^5.5.1"
   },
   "engines": {
-    "node": "^8.1.3"
+    "node": ">=8.1.3"
   },
   "scripts": {
-    "start": "egg-scripts start --title=eShowCase.eLearning.Api.external  --cluster 1",
+    "start": "egg-scripts start --daemon --title=eShowCase.eLearning.Api.external  --cluster 1",
     "stop": "egg-scripts stop --title=eShowCase.eLearning.Api.external",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",

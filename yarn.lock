@@ -4270,7 +4270,7 @@ lodash.flattendeep@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.flattendeep/-/lodash.flattendeep-4.4.0.tgz#fb030917f86a3134e5bc9bec0d69e0013ddfedb2"
 
-lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.3.0:
+lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.3.0:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
 
@@ -4618,7 +4618,7 @@ mz-modules@^2.1.0:
     pump "^3.0.0"
     rimraf "^2.6.1"
 
-mz@^2.6.0, mz@^2.7.0:
+mz@^2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/mz/-/mz-2.7.0.tgz#95008057a56cafadc2bc63dde7f9ff6955948e32"
   dependencies:
@@ -5718,10 +5718,6 @@ safe-timers@^1.1.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
 
-sax@=0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/sax/-/sax-0.4.2.tgz#39f3b601733d6bec97105b242a2a40fd6978ac3c"
-
 sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -6552,16 +6548,6 @@ vary@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
 
-webstorm-disable-index@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/webstorm-disable-index/-/webstorm-disable-index-1.2.0.tgz#03d55abe05aff34a6af12b7bfddcaee145c64bd0"
-  dependencies:
-    co "^4.6.0"
-    lodash "^4.17.2"
-    mkdirp "^0.5.1"
-    mz "^2.6.0"
-    xml-mapping "^1.7.1"
-
 which-module@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/which-module/-/which-module-1.0.0.tgz#bba63ca861948994ff307736089e3b96026c2a4f"
@@ -6646,17 +6632,6 @@ wt@^1.2.0:
     debug "^2.2.0"
     ndir "^0.1.5"
     sdk-base "^2.0.1"
-
-xml-mapping@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/xml-mapping/-/xml-mapping-1.7.1.tgz#65689659e5085833c7d2bec57dac2842ccbbc286"
-  dependencies:
-    sax "=0.4.2"
-    xml-writer ">=1.0.4"
-
-xml-writer@>=1.0.4:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/xml-writer/-/xml-writer-1.7.0.tgz#b76f1d591c16a2634ebdb703c7bdbd0fd6819065"
 
 xregexp@2.0.0:
   version "2.0.0"
