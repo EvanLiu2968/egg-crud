@@ -32,11 +32,20 @@ class UserService extends Service {
     return await this.ctx.model.User.create(user);
   }
 
-  async queryUser({ offset = 0, limit = 10 }) {
+  async queryUser({ offset = 0, limit = 10, status = 0, keyword = '' }) {
+    const { Op } = this.ctx.app.Sequelize;
     return this.ctx.model.User.findAndCountAll({
       offset,
       limit,
       order: [[ 'create_time', 'desc' ], [ 'id', 'desc' ]],
+      where: {
+        status,
+        [Op.or]: [
+          { name: { [Op.like]: `%${keyword}%` } },
+          { phone: { [Op.like]: `%${keyword}%` } },
+          { email: { [Op.like]: `%${keyword}%` } },
+        ],
+      },
     });
   }
 

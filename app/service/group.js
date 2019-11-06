@@ -15,10 +15,20 @@ class UserService extends Service {
   }
 
   async queryGroup({ offset = 0, limit = 10 }) {
+    const sequelize = this.ctx.app.Sequelize;
     return await this.ctx.model.UserGroup.findAndCountAll({
       offset,
       limit,
       order: [[ 'create_time', 'desc' ], [ 'id', 'desc' ]],
+      attributes: [
+        'id', 'code', 'note',
+        ['group_name', 'groupName'],
+        ['create_id', 'createId'],
+        ['create_time', 'createTime'],
+        ['update_id', 'updateId'],
+        ['update_time', 'updateTime'],
+        // [sequelize.fn('COUNT', sequelize.col('group_id')), 'userCount'],
+      ],
     });
   }
 }
