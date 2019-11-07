@@ -71,11 +71,13 @@ module.exports = {
     }
   },
   formatPager(query = {}) {
-    let page = Number(query.page || 1);
-    let size = Number(query.size || 10);
+    let { page, size, ...props } = query
+    page = Number(query.page || 1);
+    size = Number(query.size || 10);
     return {
+      ...props,
       offset: (page - 1) * size,
       limit: size,
-    };
+    }
   },
 };
