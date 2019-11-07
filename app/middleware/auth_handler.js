@@ -17,10 +17,11 @@ function requireAuthApi(path) {
   return true;
 }
 
-const authRequired = false;
+const authRequired = true;
 
 module.exports = (option, app) => {
   return async function(ctx, next) {
+    // mock user, for api test, you should set authRequired to ignore it.
     if (!authRequired) {
       ctx.session.user = {
         id: 1,
@@ -29,6 +30,7 @@ module.exports = (option, app) => {
       await next();
       return;
     }
+    // get current login user
     const token = ctx.request.get('accessToken') || ctx.cookies.get('accessToken');
     if (token) {
       const user = await app.redis.get(token);
