@@ -62,8 +62,8 @@ module.exports = appInfo => {
     database: 'egg-crud',
     host: '127.0.0.1',
     port: 3306,
-    username: 'root',
-    password: 'root',
+    username: 'egg-crud',
+    password: 'egg-crud',
     define: {
       timestamps: false, // 自动维护时间戳
       underscored: true, // 是否不转换为驼峰式，仅用于create_at update_at字段
